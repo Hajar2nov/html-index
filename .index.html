@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشفير وفك التشفير</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    </head>
+<body>
+    <h1>تشفير وفك التشفير</h1>
+
+    <label for="textInput">أدخل النص:</label>
+    <textarea id="textInput" rows="4" placeholder="اكتب النص هنا..."></textarea>
+
+    <button onclick="encrypt()">تشفير</button>
+    <button onclick="decrypt()">فك التشفير</button>
+
+    <h2>الناتج:</h2>
+    <textarea id="output" rows="4" readonly></textarea>
+
+    <script>
+        function encrypt() {
+            const text = document.getElementById('textInput').value;
+            const encryptedText = btoa(text); // تحويل النص إلى base64
+            document.getElementById('output').value = encryptedText;
+        }
+
+        function decrypt() {
+            const text = document.getElementById('textInput').value;
+            try {
+                const decryptedText = atob(text); // تحويل base64 إلى نص
+                document.getElementById('output').value = decryptedText;
+            } catch (e) {
+                document.getElementById('output').value = 'النص المدخل غير صحيح للتشفير!';
+            }
+        }
+    </script>
+    </body>
+    </html>
